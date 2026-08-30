@@ -1,0 +1,70 @@
+{
+ "limit": 100,
+ "offset": 0,
+ "totalFound": 2,
+ "content": [
+  {
+   "id": "sr-5001",
+   "uuid": "u-5001",
+   "name": "Lead Quality Engineer, Regulated Systems",
+   "company": {
+    "identifier": "Umbrella",
+    "name": "Umbrella"
+   },
+   "location": {
+    "country": "us",
+    "region": "CA",
+    "city": "Pasadena",
+    "remote": false
+   },
+   "department": {
+    "label": "Quality"
+   },
+   "typeOfEmployment": {
+    "label": "Full-time"
+   },
+   "releasedDate": "2026-08-21T08:00:00.000Z",
+   "applyUrl": "https://jobs.smartrecruiters.com/Umbrella/sr-5001",
+   "jobAd": {
+    "sections": {
+     "jobDescription": {
+      "text": "<p>Own quality assurance and test strategy for validated systems. Test automation, quality management system, release management, defect and regression governance.</p>"
+     },
+     "qualifications": {
+      "text": "<p>ISTQB certified tester. ERP and CRM testing background. UAT coordination.</p>"
+     }
+    }
+   }
+  },
+  {
+   "id": "sr-5002",
+   "uuid": "u-5002",
+   "name": "Warehouse Associate",
+   "company": {
+    "identifier": "Umbrella",
+    "name": "Umbrella"
+   },
+   "location": {
+    "country": "us",
+    "region": "TX",
+    "city": "Austin",
+    "remote": false
+   },
+   "department": {
+    "label": "Ops"
+   },
+   "typeOfEmployment": {
+    "label": "Full-time"
+   },
+   "releasedDate": "2026-08-21T08:00:00.000Z",
+   "applyUrl": "https://jobs.smartrecruiters.com/Umbrella/sr-5002",
+   "jobAd": {
+    "sections": {
+     "jobDescription": {
+      "text": "<p>Pick and pack.</p>"
+     }
+    }
+   }
+  }
+ ]
+}

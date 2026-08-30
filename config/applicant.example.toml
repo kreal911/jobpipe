@@ -1,0 +1,112 @@
+# ------------------------------------------------------------------
+# Your facts. Everything the packet generator writes comes from here or
+# from the job posting itself -- it never invents a credential, a date,
+# or a number.
+#
+# Source: AIQualityGov_KMen_2026-08.pdf, extracted 2026-08-28. That file
+# is the current resume and is the single source of truth for these facts.
+#
+#   python -m jobpipe packets
+# ------------------------------------------------------------------
+
+[identity]
+name      = "YOUR VALUE HERE"
+email     = "YOUR VALUE HERE"
+phone     = "YOUR VALUE HERE"
+location  = "YOUR VALUE HERE"
+linkedin  = "YOUR VALUE HERE"
+headline  = "YOUR VALUE HERE"
+
+[education]
+# Canonical and complete. This is the only degree that may appear in any
+# generated document. Do not add a second entry.
+degrees = [
+  "B.S., Your Degree - Your University, YYYY-YYYY",
+]
+
+[certifications]
+certs = [
+  "Your Certification - YYYY",
+]
+
+[[experience]]
+title   = "YOUR VALUE HERE"
+company = "YOUR VALUE HERE"
+dates   = "YOUR VALUE HERE"
+place   = "YOUR VALUE HERE"
+themes  = ["describe the work", "in your own words"]
+
+[[experience]]
+title   = "YOUR VALUE HERE"
+company = "YOUR VALUE HERE"
+dates   = "YOUR VALUE HERE"
+place   = "YOUR VALUE HERE"
+themes  = ["describe the work", "in your own words"]
+
+[[experience]]
+title   = "YOUR VALUE HERE"
+company = "YOUR VALUE HERE"
+dates   = "YOUR VALUE HERE"
+place   = "YOUR VALUE HERE"
+themes  = ["describe the work", "in your own words"]
+
+[[experience]]
+title   = "YOUR VALUE HERE"
+company = "YOUR VALUE HERE"
+dates   = "YOUR VALUE HERE"
+place   = "YOUR VALUE HERE"
+themes  = ["describe the work", "in your own words"]
+
+[[experience]]
+title   = "YOUR VALUE HERE"
+company = "YOUR VALUE HERE"
+dates   = "YOUR VALUE HERE"
+place   = "YOUR VALUE HERE"
+themes  = ["describe the work", "in your own words"]
+
+[[experience]]
+title   = "YOUR VALUE HERE"
+company = "YOUR VALUE HERE"
+dates   = "YOUR VALUE HERE"
+place   = "YOUR VALUE HERE"
+themes  = ["describe the work", "in your own words"]
+
+[resumes]
+"AI Governance & Risk"                         = "C:/path/to/your_resume.pdf"
+"QA / Quality Engineering Leadership"          = "C:/path/to/your_resume.pdf"
+"Program / Product Management (AI, regulated)" = "C:/path/to/your_resume.pdf"
+"SAP Functional / TM / SCM"                    = "C:/path/to/your_resume.pdf"
+default                                        = "C:/path/to/your_resume.pdf"
+
+# ---------------------------------------------------------------- answers
+[answers]
+work_authorization   = "U.S. Citizen"        # stated on the current resume
+requires_sponsorship = "No"                  # follows from U.S. citizenship
+security_clearance   = ""
+# Rate is split because the two channels ask different questions and a single
+# answer is wrong for one of them. Full-time boards want a salary; a staffing
+# recruiter wants an hourly number in the FIRST reply, and "open - flexible"
+# reads as no answer and stalls the submission.
+salary_expectation   = "Open - flexible based on the full role and scope."   # full-time roles
+contract_rate_c2c    = "$65/hr C2C, all inclusive"
+# Evidence for the C2C number: right-to-represent signed with Stellent IT on
+# 2026-08-27 for Sr. Portfolio Analyst EPMO at $65/hr C2C all inclusive, and
+# confirmed verbally to Ishika Azad. Clevanoo TPM was agreed at $60/hr C2C,
+# so treat 60 as the floor you have actually accepted and 65 as the ask.
+contract_rate_w2     = "TODO"   # NOT derivable from the C2C number -- on W2 the
+                                # employer carries taxes and burden, so the
+                                # equivalent is materially lower. Recruiters ask
+                                # this constantly; a guess here costs real money.
+notice_period        = "None - available immediately."
+earliest_start       = "Immediately"
+willing_to_relocate  = "No - Los Angeles based; open to remote and to on-site anywhere in the LA metro, and to travel."
+remote_preference    = "Remote; Los Angeles-based"   # from the resume header
+eeo_race_ethnicity   = "Decline to self-identify"
+eeo_gender           = "Decline to self-identify"
+veteran_status       = "Decline to self-identify"
+disability_status    = "Decline to self-identify"
+referral_source      = "Company careers page"
+years_experience     = "18+ years"           # stated in the resume summary
+
+[voice]
+closing = "The work I trust is work that can be checked - a number without its denominator is not evidence."

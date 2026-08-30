@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Nightly run at 6:00 AM.
+  EDIT THE TWO PATHS BELOW to wherever you put the jobpipe folder,
+  then:
+     cp com.jobpipe.nightly.plist ~/Library/LaunchAgents/
+     launchctl load ~/Library/LaunchAgents/com.jobpipe.nightly.plist
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.jobpipe.nightly</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/python3</string>
+    <string>-m</string>
+    <string>jobpipe</string>
+    <string>run</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/YOUR_USER/jobpipe</string>
+
+  <key>StandardOutPath</key>
+  <string>/Users/YOUR_USER/jobpipe/logs/run.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/YOUR_USER/jobpipe/logs/run.err</string>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key><integer>6</integer>
+    <key>Minute</key><integer>0</integer>
+  </dict>
+
+  <key>RunAtLoad</key>
+  <false/>
+</dict>
+</plist>

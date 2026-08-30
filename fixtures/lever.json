@@ -1,0 +1,57 @@
+[
+ {
+  "id": "lev-7001",
+  "text": "SAP TM Functional Analyst",
+  "hostedUrl": "https://jobs.lever.co/globex/lev-7001",
+  "applyUrl": "https://jobs.lever.co/globex/lev-7001/apply",
+  "createdAt": 1787438785293,
+  "categories": {
+   "location": "Washington, DC",
+   "commitment": "Full-time",
+   "team": "Supply Chain",
+   "department": "IT"
+  },
+  "workplaceType": "hybrid",
+  "descriptionPlain": "Configure SAP TM for transportation management. Functional analyst supporting S/4HANA logistics, integration, IDoc troubleshooting and cutover. Business process design and SAP testing.",
+  "lists": [
+   {
+    "text": "Requirements",
+    "content": "<ul><li>5+ years SAP functional consultant experience</li><li>SAP EWM exposure</li></ul>"
+   }
+  ],
+  "salaryRange": {
+   "min": 140000,
+   "max": 175000,
+   "currency": "USD",
+   "interval": "per-year-salary"
+  }
+ },
+ {
+  "id": "lev-7002",
+  "text": "Account Executive, Enterprise",
+  "hostedUrl": "https://jobs.lever.co/globex/lev-7002",
+  "createdAt": 1787525185293,
+  "categories": {
+   "location": "Remote",
+   "commitment": "Full-time",
+   "team": "Sales"
+  },
+  "workplaceType": "remote",
+  "descriptionPlain": "Close enterprise deals.",
+  "lists": []
+ },
+ {
+  "id": "lev-7003",
+  "text": "Director, Model Risk Management",
+  "hostedUrl": "https://jobs.lever.co/globex/lev-7003",
+  "createdAt": 1784241985293,
+  "categories": {
+   "location": "New York, NY",
+   "commitment": "Full-time",
+   "team": "Risk"
+  },
+  "workplaceType": "onsite",
+  "descriptionPlain": "Model risk and model validation for AI systems. Governance, controls, audit.",
+  "lists": []
+ }
+]

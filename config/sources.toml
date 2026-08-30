@@ -1,0 +1,313 @@
+# ------------------------------------------------------------------
+# Job boards to poll.
+#
+# Every entry below was tested on 2026-08-25 against the exact URL its
+# adapter calls. The posting count in each comment is what came back.
+# Re-check any time with:
+#     python3 -m jobpipe verify
+#
+# How to find the token for a company:
+#   Greenhouse  boards.greenhouse.io/<TOKEN>       or job-boards.greenhouse.io/<TOKEN>
+#   Lever       jobs.lever.co/<SLUG>
+#   Ashby       jobs.ashbyhq.com/<BOARD>
+#   SmartRecr.  jobs.smartrecruiters.com/<COMPANY_ID>
+#   Workday     <TENANT>.<dc>.myworkdayjobs.com/en-US/<SITE>
+#               -> host = "<TENANT>.<dc>.myworkdayjobs.com"
+# Open the careers link and read the URL you land on.
+#
+# NOTE on SmartRecruiters: its API returns HTTP 200 for ANY company id,
+# including nonsense ones. A source is only real if totalFound > 0.
+# ------------------------------------------------------------------
+
+
+# ================================================ AI labs / platforms
+# (kept from the original seed list - these five verified clean)
+
+[[source]]
+type = "greenhouse"
+company = "Anthropic"
+token = "anthropic"          # verified: 545 postings
+
+[[source]]
+type = "greenhouse"
+company = "Scale AI"
+token = "scaleai"            # verified: 216 postings
+
+[[source]]
+type = "greenhouse"
+company = "Databricks"
+token = "databricks"         # verified: 824 postings
+
+[[source]]
+type = "lever"
+company = "Palantir"
+slug = "palantir"            # verified: 200 postings (API caps at limit=200)
+
+[[source]]
+type = "ashby"
+company = "OpenAI"
+board = "openai"             # verified: 751 postings
+
+
+# ================================= LA-area health systems and payers
+
+[[source]]
+type = "workday"
+company = "Keck Medicine of USC"
+host = "usc.wd5.myworkdayjobs.com"
+tenant = "usc"
+site = "ExternalKeckUSCCareers"      # verified: 585 postings
+search = ["quality", "AI", "program manager", "compliance", "SAP"]
+detail = true
+max = 40
+
+[[source]]
+type = "workday"
+company = "SCAN Health Plan"
+host = "scanhealthplan.wd108.myworkdayjobs.com"
+tenant = "scanhealthplan"
+site = "scancareers"                 # verified: 117 postings
+search = ["quality", "AI", "program manager", "risk", "compliance"]
+detail = true
+max = 40
+
+[[source]]
+type = "workday"
+company = "Alignment Health"
+host = "alignmenthealthcare.wd12.myworkdayjobs.com"
+tenant = "alignmenthealthcare"
+site = "ahc_external"                # verified: 56 postings
+search = ["quality", "AI", "program manager", "risk"]
+detail = true
+max = 40
+
+[[source]]
+type = "workday"
+company = "Elevance Health"
+host = "elevancehealth.wd1.myworkdayjobs.com"
+tenant = "elevancehealth"
+site = "ANT"                         # verified: 305 postings
+search = ["AI governance", "model risk", "quality", "program manager"]
+detail = true
+max = 40
+
+[[source]]
+type = "greenhouse"
+company = "Clover Health"
+token = "cloverhealth"               # verified: 67 postings
+
+# Added 2026-08-25. LA-county providers found by grepping their careers
+# pages for an ATS host -- most LA health systems are on Taleo/iCIMS, which
+# have no reachable feed, so these two are the providers that ARE pollable.
+[[source]]
+type = "workday"
+company = "AltaMed"
+host = "altamed.wd1.myworkdayjobs.com"
+tenant = "altamed"
+site = "Careers"                     # verified: 272 postings
+search = ["quality", "AI", "program manager", "compliance", "risk"]
+detail = true
+max = 40
+
+[[source]]
+type = "workday"
+company = "Emanate Health"
+host = "cvhp.wd5.myworkdayjobs.com"
+tenant = "cvhp"
+site = "EmanateHealth"               # verified: 141 postings (tenant is "cvhp")
+search = ["quality", "AI", "program manager", "compliance"]
+detail = true
+max = 40
+
+[[source]]
+type = "smartrecruiters"
+company = "Avery Dennison"
+company_id = "AveryDennison"         # verified: 435 postings (totalFound > 0)
+detail = true
+
+
+# ============== DC-area federal contractors and consultancies
+# Capital One and Fannie Mae are McLean / DC-area and are where the
+# model-risk and model-validation roles actually live.
+
+[[source]]
+type = "workday"
+company = "Booz Allen Hamilton"
+host = "bah.wd1.myworkdayjobs.com"
+tenant = "bah"
+site = "BAH_Jobs"                    # verified: 2000+ postings
+search = ["AI governance", "responsible AI", "quality", "program manager", "model risk"]
+detail = true
+max = 40
+
+[[source]]
+type = "workday"
+company = "Leidos"
+host = "leidos.wd5.myworkdayjobs.com"
+tenant = "leidos"
+site = "External"                    # verified: 2000+ postings
+search = ["AI", "quality", "program manager", "test"]
+detail = true
+max = 40
+
+[[source]]
+type = "workday"
+company = "CACI"
+host = "caci.wd1.myworkdayjobs.com"
+tenant = "caci"
+site = "External"                    # verified: 1750 postings
+search = ["AI", "quality", "program manager", "test"]
+detail = true
+max = 40
+
+[[source]]
+type = "workday"
+company = "Guidehouse"
+host = "guidehouse.wd1.myworkdayjobs.com"
+tenant = "guidehouse"
+site = "External"                    # verified: 868 postings
+search = ["AI governance", "risk", "quality", "program manager", "SAP"]
+detail = true
+max = 40
+
+[[source]]
+type = "workday"
+company = "ICF"
+host = "icf.wd5.myworkdayjobs.com"
+tenant = "icf"
+site = "ICFExternal_Career_Site"     # verified: 389 postings
+search = ["AI", "quality", "program manager", "governance"]
+detail = true
+max = 40
+
+[[source]]
+type = "workday"
+company = "Accenture"
+host = "accenture.wd103.myworkdayjobs.com"
+tenant = "accenture"
+site = "AccentureCareers"            # verified: 2000+ postings
+search = ["AI governance", "responsible AI", "quality engineering", "SAP TM", "model risk"]
+detail = true
+max = 40
+
+[[source]]
+type = "workday"
+company = "RAND Corporation"
+host = "rand.wd5.myworkdayjobs.com"
+tenant = "rand"
+site = "External_Career_Site"        # verified: 9 postings (small board)
+search = ["AI", "policy", "program manager"]
+detail = true
+max = 40
+
+[[source]]
+type = "workday"
+company = "Capital One"
+host = "capitalone.wd12.myworkdayjobs.com"
+tenant = "capitalone"
+site = "Capital_One"                 # verified: 1844 postings
+search = ["model risk", "model validation", "AI governance", "quality"]
+detail = true
+max = 40
+
+[[source]]
+type = "workday"
+company = "Fannie Mae"
+host = "fanniemae.wd1.myworkdayjobs.com"
+tenant = "fanniemae"
+site = "FannieMaeCareers"            # verified: 55 postings
+search = ["model risk", "AI", "quality", "program manager"]
+detail = true
+max = 40
+
+
+# ========== AI governance, model risk, QA leadership (vendors)
+
+[[source]]
+type = "ashby"
+company = "Credo AI"
+board = "credo.ai"                   # verified: 3 postings (small board)
+
+[[source]]
+type = "ashby"
+company = "Vanta"
+board = "vanta"                      # verified: 106 postings
+
+[[source]]
+type = "ashby"
+company = "Drata"
+board = "drata"                      # verified: 47 postings
+
+[[source]]
+type = "ashby"
+company = "Cohere"
+board = "cohere"                     # verified: 147 postings
+
+[[source]]
+type = "ashby"
+company = "Fiddler AI"
+board = "fiddler-ai"                 # verified: 7 postings
+
+[[source]]
+type = "ashby"
+company = "Arthur"
+board = "arthur-ai"                  # verified: 2 postings (small board)
+
+[[source]]
+type = "greenhouse"
+company = "Dataiku"
+token = "dataiku"                    # verified: 26 postings
+
+# Added 2026-08-25. GRC / privacy platforms -- they staff the exact
+# governance, audit and controls roles the AI lane scores for.
+[[source]]
+type = "greenhouse"
+company = "OneTrust"
+token = "onetrust"                   # verified: 81 postings
+
+[[source]]
+type = "greenhouse"
+company = "LogicGate"
+token = "logicgate"                  # verified: 12 postings
+
+[[source]]
+type = "greenhouse"
+company = "Anduril Industries"
+token = "andurilindustries"          # verified: 2201 postings
+
+[[source]]
+type = "workday"
+company = "Sprinklr"
+host = "sprinklr.wd1.myworkdayjobs.com"
+tenant = "sprinklr"
+site = "careers"                     # verified: 93 postings
+search = ["quality", "AI", "program manager"]
+detail = true
+max = 40
+
+
+# ------------------------------------------------------------------
+# REMOVED after verification failed on 2026-08-25:
+#
+#   smartrecruiters "Deloitte" (company_id = "Deloitte")
+#       HTTP 200 but totalFound = 0. The id is wrong, and SmartRecruiters
+#       does not 404 on bad ids, so this silently returned nothing every
+#       run. Deloitte US recruits on apply.deloitte.com, which has no
+#       public JSON feed, so no existing adapter can reach it.
+#
+#   workday "Cedars-Sinai" (cedars-sinai.wd1.myworkdayjobs.com / External)
+#       HTTP 422 on every site name tried, on both wd1 and wd5.
+#       Cedars-Sinai is not on Workday. Its board is careers.cshs.org,
+#       which exposes no public JSON endpoint.
+#
+# Checked and NOT added - real employers, but on an ATS jobpipe has no
+# adapter for. Polling them means writing a new adapter first:
+#   City of Hope, MemorialCare, Kaiser Permanente, Optum/UHG  -> Taleo
+#   CommonSpirit/Dignity, Peraton, Noblis                     -> iCIMS
+#   SAIC                                                      -> Jobvite
+#   Hugging Face                                              -> Workable
+#   Molina, L.A. Care, Blue Shield CA, Providence, UCLA Health,
+#   CHLA, MITRE, ManTech, Freddie Mac  -> careers site is JS-rendered
+#       with no discoverable public feed; needs a manual look at the
+#       network tab to confirm what is behind it.
+# ------------------------------------------------------------------

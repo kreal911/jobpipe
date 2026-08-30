@@ -1,0 +1,48 @@
+{
+ "apiVersion": "1",
+ "jobs": [
+  {
+   "id": "ash-3001",
+   "title": "Technical Program Manager, Responsible AI",
+   "location": "Remote, United States",
+   "secondaryLocations": [],
+   "department": "Trust",
+   "team": "Responsible AI",
+   "isListed": true,
+   "isRemote": true,
+   "workplaceType": "Remote",
+   "employmentType": "FullTime",
+   "publishedAt": "2026-08-23T12:00:00.000Z",
+   "jobUrl": "https://jobs.ashbyhq.com/initech/ash-3001",
+   "applyUrl": "https://jobs.ashbyhq.com/initech/ash-3001/application",
+   "descriptionPlain": "Drive our responsible AI program as a technical program manager. Partner with legal and compliance on AI policy, governance, risk, and the EU AI Act. Regulated healthcare customers. Roadmap and stakeholder management, cross-functional delivery.",
+   "compensation": {
+    "scrapeableCompensationSalarySummary": "$165K - $200K"
+   }
+  },
+  {
+   "id": "ash-3002",
+   "title": "Staff Engineer, Platform",
+   "location": "Culver City, CA",
+   "secondaryLocations": [],
+   "department": "Engineering",
+   "team": "Platform",
+   "isListed": true,
+   "isRemote": false,
+   "workplaceType": "Hybrid",
+   "employmentType": "FullTime",
+   "publishedAt": "2026-08-19T12:00:00.000Z",
+   "jobUrl": "https://jobs.ashbyhq.com/initech/ash-3002",
+   "applyUrl": "x",
+   "descriptionPlain": "Build distributed systems in Go. Hands-on coding, individual contributor role."
+  },
+  {
+   "id": "ash-3003",
+   "title": "Hidden Draft Role",
+   "location": "Remote",
+   "isListed": false,
+   "descriptionPlain": "x",
+   "jobUrl": "https://example.com/x"
+  }
+ ]
+}

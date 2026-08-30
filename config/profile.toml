@@ -1,0 +1,229 @@
+# ------------------------------------------------------------------
+# Scoring profile. Nothing here is hidden: every point a job scores
+# traces back to a term listed below, and the digest shows you which.
+#
+#   terms       = [["phrase", weight], ...]  title match x3, body match x1
+#   require_any = gate. If none appear, that lane scores 0 for the job.
+#   penalties   = subtract points (same title x3 rule)
+#   target      = raw points that equal a score of 100 for that lane
+#
+# Tune with:  python3 -m jobpipe score --rescore && python3 -m jobpipe digest
+# ------------------------------------------------------------------
+
+[thresholds]
+# Recalibrated 2026-08-25 against 6,685 real postings.
+#
+# The old 60/35 was set when the only data was the 13 fixture jobs, which
+# score 106-110 because they are dense, boilerplate-free samples. Real
+# postings are mostly company narrative, so the whole population sits lower:
+# of ~2,000 postings with a full description, p90 = 29, p98 = 51, max = 65.
+# At keep = 60 the entire live run produced 3 APPLY, which is not a digest.
+#
+# 50 lands just above p98 -> ~45 APPLY, a shortlist you can actually read.
+# 30 lands near p90       -> ~128 LOOK.
+# Re-check after any weight change with:
+#   python3 -m jobpipe score --rescore && python3 -m jobpipe stats
+keep  = 50      # digest section "APPLY"
+maybe = 30      # digest section "LOOK"
+
+[bonus]
+remote      = 4
+comp_posted = 3
+fresh       = 5
+fresh_days  = 7
+
+[filters]
+max_age_days = 45
+allow_locations = [
+  # "us" was removed 2026-08-25: several boards format every location as
+  # "Orlando, FL, US" or "US - GA, Atlanta", so the bare token matched the
+  # country suffix and let any state through. "united states"/"usa"/"remote"
+  # still catch genuinely nationwide postings, and a multi-site posting like
+  # "Riverwoods, IL, ..., McLean, VA" still passes on "mclean" -- which a
+  # state-based deny list would have wrongly rejected.
+  "remote", "united states", "usa", "nationwide", "anywhere",
+  "los angeles", "california", "ca", "santa monica", "el segundo", "pasadena",
+  "burbank", "glendale", "long beach", "irvine", "san diego", "orange county",
+  "culver city", "torrance", "woodland hills",
+  "washington", "dc", "district of columbia", "arlington", "mclean",
+  "reston", "bethesda", "rockville", "alexandria", "virginia", "maryland",
+  # DC-area sites that federal contractors post to but that were missing:
+  "chantilly", "springfield", "herndon", "fairfax", "tysons", "quantico",
+  "annapolis", "columbia", "silver spring", "college park", "aberdeen",
+  # LA-area sites that appear as facility names rather than cities:
+  "arcadia", "monterey park", "downey", "anaheim", "costa mesa", "santa ana",
+  "manhattan beach", "beverly hills", "west hollywood", "marina del rey",
+]
+
+# Workday's list endpoint returns "2 Locations" instead of a city whenever a
+# posting spans multiple offices, and some tenants return an empty string.
+# That is an UNKNOWN location, not a disallowed one -- dropping it silently
+# discarded 798 postings on the last run, most of them the Capital One,
+# Elevance, Accenture and CACI roles this profile exists to find.
+#
+# When true, a posting whose location matches one of the patterns below
+# survives the location gate and is judged on its content instead. The
+# digest still prints the raw location, so an ambiguous one is visible.
+# Set false to go back to dropping them.
+treat_unknown_location_as_allowed = true
+unknown_location_patterns = [
+  '^\s*$',                 # empty
+  '^\d+\s+locations?$',    # Workday's "2 Locations" placeholder
+]
+exclude_title = [
+  "intern", "internship", "co-op", "apprentice", "junior", "entry level",
+  "graduate", "new grad", "student", "part-time", "unpaid",
+  "sdr", "bdr", "account executive", "sales development", "recruiter",
+]
+exclude_body = [
+  "top secret", "ts/sci", "polygraph", "active security clearance",
+]
+
+# Checked against the location BEFORE allow_locations, and unlike that gate it
+# is NOT skipped for remote postings. A board that flags "Remote - India" as
+# remote=true otherwise bypasses the location check completely and can rank
+# first. Deliberately omits "ontario" (Ontario, CA is LA-area) and "mexico"
+# (matches "New Mexico").
+exclude_locations = [
+  "india", "bengaluru", "bangalore", "hyderabad", "chennai", "pune",
+  "gurgaon", "noida", "mumbai", "delhi",
+  "united kingdom", "london", "dublin", "ireland",
+  "germany", "berlin", "munich", "france", "paris",
+  "spain", "madrid", "barcelona", "italy", "milano", "milan", "roma", "rome",
+  "torino", "netherlands", "amsterdam", "poland", "warsaw", "krakow",
+  "japan", "tokyo", "singapore", "australia", "sydney", "melbourne",
+  "canada", "toronto", "vancouver", "montreal",
+  "brazil", "sao paulo", "philippines", "manila",
+  "emea", "apac", "latam",
+  # Added 2026-08-28 after a Cohere TPM role in Korea reached APPLY: a board
+  # that flags a posting remote skips the allow gate, so only this list stops
+  # it. Deliberately omits names that collide with US places -- georgia,
+  # ontario, mexico, victoria, lebanon, peru, columbia.
+  "korea", "seoul", "china", "beijing", "shanghai", "shenzhen", "taiwan",
+  "hong kong", "malaysia", "kuala lumpur", "thailand", "bangkok", "vietnam",
+  "hanoi", "indonesia", "jakarta", "new zealand", "auckland",
+  "israel", "tel aviv", "united arab emirates", "dubai", "abu dhabi",
+  "saudi arabia", "riyadh", "qatar", "egypt", "south africa", "nigeria",
+  "kenya", "turkey", "istanbul", "greece", "athens", "portugal", "lisbon",
+  "sweden", "stockholm", "norway", "oslo", "denmark", "copenhagen",
+  "finland", "helsinki", "belgium", "brussels", "luxembourg",
+  "switzerland", "zurich", "geneva", "austria", "vienna",
+  "czech republic", "czechia", "prague", "hungary", "budapest",
+  "romania", "bucharest", "bulgaria", "sofia", "ukraine", "kyiv",
+  "argentina", "buenos aires", "chile", "santiago", "costa rica",
+  "uruguay", "montevideo", "scotland", "edinburgh", "wales", "belfast",
+]
+
+# ---------------------------------------------------------------- lanes
+
+[[lanes]]
+name        = "AI Governance & Risk"
+target      = 85
+require_any = ["ai", "artificial intelligence", "machine learning", "llm", "model"]
+terms = [
+  ["ai governance", 6], ["responsible ai", 5], ["ai risk", 5], ["ai policy", 4],
+  ["model risk", 5], ["model validation", 5], ["model governance", 4],
+  ["nist ai rmf", 6], ["ai rmf", 5], ["eu ai act", 6], ["iso 42001", 6],
+  ["iso/iec 42001", 6], ["ai assurance", 4], ["ai compliance", 5],
+  ["algorithmic accountability", 4], ["trustworthy ai", 4], ["ai ethics", 3],
+  # Added 2026-08-25 from real titles in the live pull. Capital One posts
+  # model-risk work as "Model Risk Office" / "Quantitative Analysis", and GRC
+  # was not a term at all even though it is how these roles are usually named.
+  ["model risk office", 6], ["model risk management", 5],
+  ["grc", 4], ["governance risk and compliance", 5],
+  ["quantitative analyst", 3], ["quantitative analysis", 3],
+  ["ai safety", 3], ["regulatory compliance", 3], ["privacy", 2],
+  ["llm evaluation", 5], ["model evaluation", 4], ["red team", 2],
+  ["guardrails", 2], ["bias", 2], ["fairness", 2], ["explainability", 3],
+  ["audit", 2], ["controls", 2], ["regulated", 2], ["governance", 3],
+  ["risk management framework", 3], ["third party risk", 2],
+  ["hipaa", 2], ["fedramp", 2], ["soc 2", 1], ["nist", 3],
+]
+penalties = [["phd required", 3], ["research scientist", 3], ["publications", 2]]
+
+[[lanes]]
+name        = "QA / Quality Engineering Leadership"
+target      = 85
+require_any = ["qa", "quality", "test", "testing", "sdet", "quality engineering"]
+terms = [
+  ["qa manager", 6], ["qa lead", 6], ["test manager", 6],
+  ["quality engineering manager", 6], ["director of quality", 6],
+  ["head of quality", 6], ["qa director", 6], ["test lead", 5],
+  ["quality assurance", 4], ["quality engineering", 4], ["test strategy", 4],
+  # Added 2026-08-25 from real titles in the live pull. The lane knew
+  # "qa manager" but not "quality assurance manager" or plain "quality
+  # manager", so CACI's Quality Assurance Manager scored 29.7 and SCAN's
+  # Senior Manager, Quality Assurance and Compliance scored 14.1.
+  # NOTE: a space in a term matches [\s\-/]+ but NOT a comma, so phrases
+  # must be contiguous in the real title to match.
+  ["quality assurance manager", 6], ["quality assurance lead", 5],
+  ["quality manager", 5], ["quality director", 6], ["test director", 6],
+  ["quality lead", 4], ["head of qa", 6], ["qa lead", 6],
+  ["quality assurance and compliance", 5], ["quality systems", 3],
+  ["computer system validation", 4], ["quality program", 3],
+  ["test automation", 3], ["release management", 4], ["test management", 4],
+  ["istqb", 4], ["defect", 2], ["regression", 2], ["uat", 3], ["sit", 2],
+  ["test plan", 3], ["erp", 3], ["sap", 3], ["crm", 2], ["salesforce", 2],
+  ["regulated", 2], ["validation", 2], ["sdlc", 2], ["offshore", 2],
+  ["test data", 2], ["quality strategy", 3], ["quality management system", 3],
+]
+penalties = [["hands-on coding", 1], ["individual contributor", 1]]
+
+[[lanes]]
+name        = "SAP Functional / TM / SCM"
+target      = 80
+require_any = ["sap", "s/4hana", "s4hana", "erp"]
+terms = [
+  ["sap tm", 7], ["transportation management", 6], ["sap ewm", 4],
+  ["sap mm", 3], ["sap sd", 3], ["s/4hana", 5], ["s4hana", 5],
+  ["sap functional", 5], ["functional analyst", 4], ["functional consultant", 4],
+  ["configuration", 3], ["supply chain", 3], ["logistics", 3], ["fiori", 2],
+  ["abap", 1], ["business process", 2], ["integration", 2], ["cutover", 3],
+  ["sap c4c", 4], ["solution manager", 2], ["idoc", 2], ["sap testing", 4],
+  # Added 2026-08-25. Real postings name the role "SAP <module> Analyst /
+  # Manager / SME" rather than "SAP functional consultant".
+  ["sap manager", 5], ["sap analyst", 4], ["sap sme", 4],
+  ["sap architect", 4], ["erp analyst", 4], ["erp manager", 4],
+  ["order to cash", 3], ["procure to pay", 3], ["sap tm functional", 7],
+]
+penalties = [["abap developer", 4], ["basis administrator", 3]]
+
+[[lanes]]
+name        = "Program / Product Management (AI, regulated)"
+# target was 65 while every other lane was 80-85, so identical raw points
+# read ~30% higher here and this lane took all 68 "keep" slots. 85 puts the
+# four lanes on one scale.
+target      = 85
+require_any = ["program manager", "product manager", "technical program", "delivery manager", "program management"]
+# Second gate, TITLE only (require_any also searches the body, where every AI
+# lab mentions "ai" and every employer mentions "compliance" -- so it cannot
+# tell a Responsible AI TPM from a Reliability TPM).
+#
+# This lane is "Program / Product Management (AI, regulated)". Without this,
+# it was any program manager anywhere, which is how it took 36 of 47 APPLY
+# slots. Now the title has to say what the programme is actually about.
+# "defense" and "data" were dropped 2026-08-25: every Anduril department
+# reads "AFS : Air Defense Engineering", and "data" catches any
+# data-platform team, so both waved through generic TPM roles that the gate
+# exists to stop. Named AI/governance/regulated terms carry the lane instead.
+require_title_any = [
+  "ai", "artificial intelligence", "machine learning", "ml", "llm",
+  "model risk", "model", "responsible ai", "governance", "risk", "compliance",
+  "regulated", "audit", "quality", "healthcare", "health", "clinical",
+  "medicare", "medicaid", "payer", "federal", "government", "public sector",
+  "erp", "sap", "supply chain", "logistics", "security", "privacy",
+]
+# "technical program manager" and "program manager" both fire on the SAME
+# title, so a bare TPM title used to bank (6+5)x3 = 33 points -- over half
+# the old target -- before saying anything about AI, governance or health.
+# The specific phrases keep their weight; the generic ones are cut so the
+# title states the job family without deciding the ranking on its own.
+terms = [
+  ["technical program manager", 6], ["ai product manager", 6],
+  ["program manager", 3], ["product manager", 3], ["delivery manager", 4],
+  ["ai", 3], ["machine learning", 3], ["governance", 3], ["compliance", 3],
+  ["healthcare", 3], ["federal", 3], ["government", 2], ["regulated", 3],
+  ["stakeholder", 2], ["roadmap", 2], ["cross-functional", 2], ["risk", 2],
+  ["vendor", 2], ["budget", 1], ["agile", 2], ["scrum", 2], ["erp", 2],
+]
+penalties = [["engineering manager", 3], ["people manager of engineers", 2]]

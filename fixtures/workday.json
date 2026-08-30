@@ -1,0 +1,27 @@
+{
+ "total": 2,
+ "jobPostings": [
+  {
+   "title": "Manager, AI Risk & Compliance",
+   "externalPath": "/job/Los-Angeles/Manager-AI-Risk_R-8801",
+   "locationsText": "Los Angeles, CA",
+   "postedOn": "Posted 3 Days Ago",
+   "bulletFields": [
+    "R-8801",
+    "Full time"
+   ],
+   "jobDescription": "<p>Lead AI compliance and AI risk for a health system. NIST AI RMF, model governance, third party risk, audit and controls. HIPAA and FedRAMP exposure a plus.</p>"
+  },
+  {
+   "title": "Registered Nurse, ICU",
+   "externalPath": "/job/Los-Angeles/RN-ICU_R-8802",
+   "locationsText": "Los Angeles, CA",
+   "postedOn": "Posted 10 Days Ago",
+   "bulletFields": [
+    "R-8802",
+    "Full time"
+   ],
+   "jobDescription": "<p>Provide bedside care.</p>"
+  }
+ ]
+}

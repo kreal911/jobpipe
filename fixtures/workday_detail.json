@@ -1,0 +1,22 @@
+{
+ "jobPostingInfo": {
+  "id": "2a715a619ce61001c177b0d657c70001",
+  "title": "Senior Associate, Quantitative Analyst - Model Risk Office",
+  "jobDescription": "<p>Own <b>model risk</b> and model validation for production scoring models. You will run model governance, build audit evidence and controls, and partner with compliance in a regulated environment. NIST AI RMF familiarity preferred.</p>",
+  "location": "Riverwoods, IL",
+  "additionalLocations": ["Anytown, IL", "McLean, VA"],
+  "postedOn": "Posted 5 Days Ago",
+  "startDate": "2026-08-20",
+  "timeType": "Full time",
+  "jobReqId": "R249475",
+  "jobPostingId": "Senior-Associate--Quantitative-Analyst---Model-Risk-Office_R249475-1",
+  "jobPostingSiteId": "Capital_One",
+  "country": {
+   "descriptor": "United States of America",
+   "id": "bc33aa3152ec42d4995f4791a106ed09"
+  },
+  "canApply": true,
+  "posted": true,
+  "externalUrl": "https://capitalone.wd12.myworkdayjobs.com/Capital_One/job/Riverwoods-IL/Senior-Associate--Quantitative-Analyst---Model-Risk-Office_R249475-1"
+ }
+}

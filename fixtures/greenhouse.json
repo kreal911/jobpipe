@@ -1,0 +1,85 @@
+{
+ "jobs": [
+  {
+   "id": 4001,
+   "internal_job_id": 901,
+   "title": "Senior Manager, AI Governance and Model Risk",
+   "updated_at": "2026-08-20T17:04:00-04:00",
+   "requisition_id": "R-1201",
+   "location": {
+    "name": "Los Angeles, CA"
+   },
+   "absolute_url": "https://boards.greenhouse.io/acme/jobs/4001",
+   "departments": [
+    {
+     "id": 1,
+     "name": "Risk &amp; Compliance"
+    }
+   ],
+   "offices": [
+    {
+     "id": 9,
+     "name": "Los Angeles"
+    }
+   ],
+   "content": "&lt;p&gt;Own our AI governance program. You will operationalize the NIST AI RMF, prepare for ISO 42001 certification and the EU AI Act, run model validation and LLM evaluation, and stand up controls and audit evidence across a regulated healthcare environment. HIPAA experience required.&lt;/p&gt;"
+  },
+  {
+   "id": 4002,
+   "internal_job_id": 902,
+   "title": "Software Engineering Intern",
+   "updated_at": "2026-08-22T10:00:00-04:00",
+   "location": {
+    "name": "Remote - US"
+   },
+   "absolute_url": "https://boards.greenhouse.io/acme/jobs/4002",
+   "departments": [
+    {
+     "id": 2,
+     "name": "Engineering"
+    }
+   ],
+   "offices": [],
+   "content": "&lt;p&gt;Summer internship writing Python.&lt;/p&gt;"
+  },
+  {
+   "id": 4003,
+   "internal_job_id": 903,
+   "title": "Research Scientist, Alignment",
+   "updated_at": "2026-08-18T10:00:00-04:00",
+   "location": {
+    "name": "San Francisco, CA"
+   },
+   "absolute_url": "https://boards.greenhouse.io/acme/jobs/4003",
+   "departments": [
+    {
+     "id": 3,
+     "name": "Research"
+    }
+   ],
+   "offices": [],
+   "content": "&lt;p&gt;PhD required. Publications in machine learning. Red team large language model behavior.&lt;/p&gt;"
+  },
+  {
+   "id": 4004,
+   "internal_job_id": 904,
+   "title": "QA Manager, ERP Quality Engineering",
+   "updated_at": "2026-08-24T09:00:00-04:00",
+   "location": {
+    "name": "Remote - United States"
+   },
+   "absolute_url": "https://boards.greenhouse.io/acme/jobs/4004",
+   "departments": [
+    {
+     "id": 4,
+     "name": "Quality Assurance"
+    }
+   ],
+   "offices": [],
+   "content": "&lt;p&gt;Lead test strategy and release management for our SAP S/4HANA and Salesforce CRM programs. Own UAT, SIT, regression, test plan and defect governance across onshore and offshore teams in a regulated environment. ISTQB preferred.&lt;/p&gt;"
+  }
+ ],
+ "meta": {
+  "total": 4
+ }
+}

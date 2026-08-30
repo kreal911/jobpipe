@@ -1,0 +1,9 @@
+data/
+out/
+logs/
+__pycache__/
+*.pyc
+
+# personal - never commit
+config/applicant.toml
+config/*.bak
