@@ -1,5 +1,7 @@
 # jobpipe
 
+[![tests](https://github.com/kreal911/jobpipe/actions/workflows/tests.yml/badge.svg)](https://github.com/kreal911/jobpipe/actions/workflows/tests.yml)
+
 Pulls job postings straight from company ATS feeds, scores them against your
 lanes, and writes a ranked list. Python 3.11+, standard library only. No
 install, no API keys, no accounts.
